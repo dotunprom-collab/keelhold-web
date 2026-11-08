@@ -1,0 +1,33 @@
+.article {
+  max-width: 760px;
+  margin-inline: auto;
+  padding: 96px var(--gutter);
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+  font-size: 14px;
+  color: var(--stone-500);
+}
+
+.title {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(40px, 6vw, 52px);
+  line-height: var(--leading-tight);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--stone-700);
+}

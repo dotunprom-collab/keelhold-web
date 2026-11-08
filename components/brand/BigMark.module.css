@@ -1,0 +1,19 @@
+.root {
+  position: relative;
+  max-width: 100%;
+  aspect-ratio: 1;
+  container-type: inline-size;
+  flex-shrink: 0;
+}
+
+.frame {
+  position: absolute;
+  inset: 1%;
+  border: 8cqi solid var(--paper-50);
+}
+
+.bar {
+  position: absolute;
+  background: var(--brass-500);
+  transition: all 700ms var(--ease-mark);
+}

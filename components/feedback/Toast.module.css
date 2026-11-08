@@ -1,0 +1,82 @@
+.toast {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 200;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  width: 360px;
+  max-width: calc(100% - 48px);
+  padding: 16px 16px 16px 0;
+  background: var(--navy-800);
+  color: var(--paper-50);
+  border-radius: var(--radius-1);
+  box-shadow: var(--shadow-2);
+  overflow: hidden;
+  animation: kh-rise var(--duration-3) var(--ease-standard) both;
+}
+
+.bar {
+  align-self: stretch;
+  width: 4px;
+  flex-shrink: 0;
+  margin-block: -16px;
+}
+
+.positive {
+  background: var(--green-600);
+}
+
+.negative {
+  background: var(--red-600);
+}
+
+.neutral {
+  background: var(--brass-500);
+}
+
+.icon {
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.title {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.message {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--navy-300);
+}
+
+.dismiss {
+  flex-shrink: 0;
+  display: inline-flex;
+  padding: 2px;
+  background: none;
+  border: 0;
+  color: var(--navy-300);
+  cursor: pointer;
+  border-radius: var(--radius-1);
+}
+
+.dismiss:hover {
+  color: var(--paper-50);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toast {
+    animation: none;
+  }
+}

@@ -1,0 +1,149 @@
+.panel {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr));
+  background: var(--navy-800);
+  color: var(--paper-50);
+}
+
+.tablist {
+  display: flex;
+  flex-direction: column;
+  padding: 24px 40px;
+}
+
+@media (max-width: 480px) {
+  .tablist {
+    padding: 16px 24px;
+  }
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  padding: 22px 0;
+  background: none;
+  border: 0;
+  border-top: 1px solid var(--navy-700);
+  color: var(--navy-300);
+  text-align: left;
+  cursor: pointer;
+  transition: color var(--duration-2) var(--ease-standard);
+}
+
+.tab:first-child {
+  border-top: 0;
+}
+
+.tab:focus-visible {
+  outline-offset: -2px;
+}
+
+.num {
+  width: 24px;
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  transition: color var(--duration-2) var(--ease-standard);
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.name {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 1.1;
+}
+
+.status {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--navy-300);
+}
+
+.arrow {
+  flex-shrink: 0;
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: opacity var(--duration-2) var(--ease-standard), transform var(--duration-2) var(--ease-standard);
+}
+
+.active {
+  color: var(--paper-50);
+}
+
+.active .num {
+  color: var(--brass-500);
+}
+
+.active .arrow {
+  opacity: 1;
+  transform: none;
+}
+
+@media (max-width: 480px) {
+  .tab {
+    gap: 14px;
+  }
+
+  .name {
+    font-size: 24px;
+  }
+}
+
+.detail {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 48px;
+  padding: clamp(32px, 4vw, 56px);
+  background: var(--navy-900);
+}
+
+.content {
+  flex: 1 1 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.category {
+  color: var(--brass-500);
+}
+
+.title {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 1.1;
+}
+
+.description {
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--navy-300);
+}
+
+.product {
+  font-size: 14px;
+  color: var(--navy-300);
+}
+
+.productName {
+  margin-left: 8px;
+  font-family: var(--font-mono);
+  color: var(--paper-50);
+}
+
+.cta {
+  padding-top: 6px;
+}

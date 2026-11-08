@@ -1,36 +1,27 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Keelhold Capital Group — website
 
-## Getting Started
-
-First, run the development server:
+Next.js (App Router) + TypeScript, statically generated. Built to the *Website Upgrade Brief 1.0* design handoff.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+cp .env.example .env.local   # fill in as needed
+npm run dev                  # http://localhost:3000
+npm run build && npm start   # production
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Where things live
+- `app/globals.css` — design tokens (CSS custom properties) and resets
+- `app/page.tsx` — homepage; `app/[business]/page.tsx` — the four business pages; `app/privacy`, `app/terms`
+- `lib/businesses.ts` — business data (names, descriptions, status, legal entities, fundCorridor URL)
+- `lib/site.ts` — site URL, registered office
+- `lib/enquiry.ts` — enquiry types, contact email
+- `content/publications.ts` — Letters & reports (empty until genuine publications exist)
+- `app/actions/contact.ts` — enquiry submission (validation, honeypot, rate limit, Turnstile)
+- `lib/server/mail.ts` — email delivery adapter (**connect a provider before launch**)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Before launch
+- Connect an email provider in `lib/server/mail.ts` and set `ENQUIRY_TO_*` recipients
+- Set Turnstile keys (production rejects enquiries without them)
+- Fill `[bracketed]` placeholders: legal entity, jurisdiction, company number, regulatory statement, per-business legal entities
+- Legal page text, confirmed contact email
+- Rate limiting is per-instance in memory; add a shared store or platform firewall rule for serverless hosting

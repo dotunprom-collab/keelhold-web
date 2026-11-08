@@ -1,0 +1,49 @@
+.header {
+  color: var(--paper-50);
+}
+
+.overlay {
+  position: absolute;
+  inset: 0 0 auto 0;
+  z-index: 5;
+  background: transparent;
+}
+
+.solid {
+  position: relative;
+  background: var(--navy-800);
+}
+
+.inner {
+  min-height: 96px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.home:hover {
+  text-decoration: none;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  font-size: 15px;
+}
+
+.link {
+  transition: color var(--duration-1) var(--ease-standard);
+}
+
+.link:hover {
+  color: var(--brass-500);
+}
+
+@media (max-width: 720px) {
+  .nav {
+    display: none;
+  }
+}

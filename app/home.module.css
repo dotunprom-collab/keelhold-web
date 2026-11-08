@@ -1,0 +1,288 @@
+.brass {
+  color: var(--brass-500);
+}
+
+.stone {
+  color: var(--stone-500);
+}
+
+.stack20 {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ─── Hero ─── */
+.hero {
+  background: var(--navy-800);
+  color: var(--paper-50);
+  overflow: hidden;
+}
+
+.heroUpper {
+  min-height: 760px;
+  padding-top: 128px;
+  padding-bottom: 64px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
+  gap: 48px;
+  align-items: center;
+}
+
+.heroCopy {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.heroTitle {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(48px, 7vw, 88px);
+  line-height: 1.02;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+.heroTitle em {
+  font-style: italic;
+  color: var(--brass-500);
+}
+
+.heroLede {
+  max-width: 560px;
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--navy-300);
+}
+
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.ghostLight {
+  color: var(--paper-50);
+}
+
+.heroMark {
+  display: flex;
+  justify-content: flex-end;
+  animation-delay: 0ms;
+}
+
+/* ─── Approach ─── */
+.approach {
+  background: var(--paper-50);
+  padding-block: 128px;
+}
+
+.approachGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  gap: 64px;
+}
+
+@media (max-width: 760px) {
+  .approachGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.principles {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.principle {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr);
+  gap: 24px;
+  align-items: baseline;
+  padding: 32px 0;
+  border-top: 1px solid var(--paper-300);
+}
+
+.principleNum {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--brass-700);
+}
+
+.principleBody {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px 24px;
+  align-items: baseline;
+}
+
+.principleTitle {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 1.25;
+}
+
+.principleText {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--stone-500);
+}
+
+@media (max-width: 480px) {
+  .principle {
+    grid-template-columns: 36px minmax(0, 1fr);
+    gap: 16px;
+  }
+}
+
+/* ─── Capital ─── */
+.capital {
+  background: var(--navy-900);
+  color: var(--paper-50);
+  padding-block: 128px;
+}
+
+.capitalInner {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+}
+
+.capitalHeader {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px 48px;
+}
+
+.capitalTitle {
+  font-size: clamp(40px, 5vw, 64px);
+}
+
+.capitalLede {
+  max-width: 380px;
+  color: var(--navy-300);
+}
+
+.capitalCols {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  border-top: 1px solid var(--navy-700);
+}
+
+.capitalCol {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 40px 32px 48px 0;
+}
+
+.capitalCol + .capitalCol {
+  padding-left: 32px;
+}
+
+.capitalCol:not(:last-child) {
+  border-right: 1px solid var(--navy-700);
+}
+
+.tick {
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background: var(--brass-500);
+}
+
+.capitalCol + .capitalCol .tick {
+  left: 32px;
+}
+
+/* Stacked columns: drop the vertical rules and indents. */
+@media (max-width: 559px) {
+  .capitalCol,
+  .capitalCol + .capitalCol {
+    padding: 32px 0 40px;
+    border-right: 0;
+  }
+
+  .capitalCol + .capitalCol {
+    border-top: 1px solid var(--navy-700);
+  }
+
+  .capitalCol + .capitalCol .tick {
+    left: 0;
+  }
+}
+
+.capitalNum {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--brass-500);
+}
+
+.capitalColTitle {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 48px;
+  line-height: 1;
+}
+
+.capitalText {
+  color: var(--navy-300);
+}
+
+/* ─── Companies ─── */
+.companies {
+  background: var(--paper-100);
+  padding-block: 128px;
+}
+
+.companiesInner {
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+}
+
+.companiesHeader {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px 48px;
+}
+
+.legend {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ─── Letters ─── */
+.letters {
+  background: var(--paper-50);
+  padding-block: 128px;
+}
+
+.lettersInner {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+@media (max-width: 720px) {
+  .approach,
+  .capital,
+  .companies,
+  .letters {
+    padding-block: 88px;
+  }
+}

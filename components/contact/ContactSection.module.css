@@ -1,0 +1,52 @@
+.section {
+  background: var(--navy-800);
+  color: var(--paper-50);
+  padding-block: 128px;
+  scroll-margin-top: 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));
+  gap: 64px;
+  align-items: start;
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.eyebrow {
+  color: var(--brass-500);
+}
+
+.heading {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(40px, 5vw, 60px);
+  line-height: 1.05;
+  text-wrap: balance;
+}
+
+.accent {
+  color: var(--brass-500);
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 15px;
+  color: var(--navy-300);
+}
+
+.details a {
+  color: var(--paper-50);
+  align-self: flex-start;
+}
+
+.address {
+  font-style: normal;
+}

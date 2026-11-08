@@ -1,0 +1,39 @@
+.root {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.dark {
+  color: var(--navy-300);
+}
+
+.light {
+  color: var(--stone-500);
+}
+
+.square {
+  width: 8px;
+  height: 8px;
+  flex-shrink: 0;
+  border: 1px solid;
+}
+
+.operating {
+  background: var(--brass-500);
+  border-color: var(--brass-500);
+}
+
+.planned {
+  background: transparent;
+}
+
+.dark .planned {
+  border-color: var(--navy-300);
+}
+
+.light .planned {
+  border-color: var(--stone-500);
+}

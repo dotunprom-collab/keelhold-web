@@ -1,0 +1,29 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: clamp(24px, 4vw, 40px);
+  background: var(--paper-50);
+  border-top: 4px solid var(--brass-500);
+  color: var(--navy-800);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.honeypot {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.formError {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--red-600);
+}

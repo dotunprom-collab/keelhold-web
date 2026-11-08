@@ -1,0 +1,45 @@
+.scroller {
+  overflow-x: auto;
+  scrollbar-width: none;
+  border-bottom: 1px solid var(--paper-300);
+}
+
+.scroller::-webkit-scrollbar {
+  display: none;
+}
+
+.list {
+  display: flex;
+  gap: 32px;
+  width: max-content;
+  min-width: 100%;
+}
+
+.tab {
+  appearance: none;
+  background: none;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  padding: 12px 0;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--stone-500);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color var(--duration-2) var(--ease-standard);
+}
+
+.tab:hover {
+  color: var(--navy-800);
+}
+
+.tab:focus-visible {
+  outline-offset: -2px;
+}
+
+.active {
+  color: var(--navy-800);
+  border-bottom-color: var(--brass-500);
+}

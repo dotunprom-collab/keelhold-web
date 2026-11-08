@@ -1,0 +1,61 @@
+.band {
+  background: var(--paper-50);
+  padding-block: 96px;
+  border-bottom: 1px solid var(--paper-300);
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 48px;
+  align-items: flex-end;
+}
+
+.intro {
+  flex: 1 1 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.eyebrow {
+  color: var(--brass-700);
+}
+
+.heading {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(32px, 3.6vw, 44px);
+  line-height: 1.1;
+  text-wrap: balance;
+}
+
+.pair {
+  flex: 2 1 600px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: 48px;
+}
+
+.part {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 24px;
+  border-top: 2px solid var(--navy-800);
+}
+
+.title {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 62px;
+  font-style: italic;
+  line-height: 0.9;
+}
+
+.body {
+  font-size: 21px;
+  font-weight: 500;
+  line-height: 1.6;
+  color: var(--stone-500);
+}

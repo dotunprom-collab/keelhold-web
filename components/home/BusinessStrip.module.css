@@ -1,0 +1,33 @@
+.strip {
+  border-top: 1px solid var(--navy-700);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 22px 24px 22px 0;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.name {
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  line-height: 1.4;
+}
+
+.status {
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--navy-300);
+}
