@@ -52,6 +52,7 @@
 .heroLede {
   max-width: 560px;
   font-size: 18px;
+  font-style: italic;
   line-height: 1.6;
   color: var(--navy-300);
 }

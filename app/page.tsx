@@ -77,8 +77,9 @@ export default function HomePage() {
                   Capital held with a low centre of <em>gravity.</em>
                 </h1>
                 <p className={`rise ${styles.heroLede}`} style={{ animationDelay: "320ms" }}>
-                  A privately held investment and operating group building businesses, allocating capital and creating
-                  enduring value across advisory, technology, proprietary investments and real estate.
+                  Keelhold is an independent business and investment group focused on financial advisory, technology and
+                  long-term value creation. We help businesses and investors make better financial decisions through
+                  rigorous analysis, practical advice and technology-enabled solutions.
                 </p>
                 <div className={`rise ${styles.ctas}`} style={{ animationDelay: "440ms" }}>
                   <ButtonLink href="#contact" variant="accent" size="lg" icon="arrow-right">
