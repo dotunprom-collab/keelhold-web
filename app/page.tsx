@@ -168,7 +168,7 @@ export default function HomePage() {
         </CompanySelectionProvider>
 
         {/* Letters & reports */}
-        <section id="letters" className={styles.letters} aria-labelledby="letters-heading">
+        <section id="insights" className={styles.letters} aria-labelledby="letters-heading">
           <div className={`container ${styles.lettersInner}`}>
             <div className={styles.stack20}>
               <p className={`eyebrow ${styles.stone}`}>Publications</p>

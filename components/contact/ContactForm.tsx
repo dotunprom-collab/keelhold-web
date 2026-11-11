@@ -6,12 +6,14 @@ import { submitEnquiry } from "@/app/actions/contact";
 import { Button } from "@/components/core/Button";
 import { Toast } from "@/components/feedback/Toast";
 import { Checkbox, Input, Select, Textarea } from "@/components/forms/Fields";
+import { trackEvent } from "@/lib/analytics";
 import {
   CONTACT_EMAIL,
-  ENQUIRY_TYPES,
+  GENERAL_ENQUIRY_OPTIONS,
   MESSAGE_MAX,
   PREFILL_EVENT,
-  isEnquiryType,
+  type EnquiryOption,
+  type EnquirySource,
   type EnquiryType,
   type PrefillDetail,
 } from "@/lib/enquiry";
@@ -24,14 +26,22 @@ type Status = "idle" | "submitting" | "success" | "error";
 const FIELD_IDS = {
   name: "contact-name",
   email: "contact-email",
+  company: "contact-company",
   type: "contact-type",
   message: "contact-message",
   consent: "contact-consent",
 } as const;
 
-export function ContactForm({ defaultType = "general" }: { defaultType?: EnquiryType }) {
+interface ContactFormProps {
+  defaultType?: EnquiryType;
+  options?: EnquiryOption[];
+  source?: EnquirySource;
+}
+
+export function ContactForm({ defaultType = "general", options = GENERAL_ENQUIRY_OPTIONS, source = "group" }: ContactFormProps) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [company, setCompany] = useState("");
   const [type, setType] = useState<EnquiryType>(defaultType);
   const [message, setMessage] = useState("");
   const [consent, setConsent] = useState(false);
@@ -42,18 +52,21 @@ export function ContactForm({ defaultType = "general" }: { defaultType?: Enquiry
   const [toastOpen, setToastOpen] = useState(false);
   const turnstile = useRef<TurnstileHandle>(null);
 
-  // Preset from elsewhere on the page ("Request updates") or from ?enquiry= in the URL.
+  const offered = (value: string | null | undefined): value is EnquiryType => options.some((o) => o.value === value);
+
+  // Preset from elsewhere on the page ("Request updates", service links) or from ?enquiry= in the URL.
   useEffect(() => {
     function apply(detail: PrefillDetail) {
-      if (detail.type) setType(detail.type);
+      if (offered(detail.type)) setType(detail.type);
       if (detail.message) setMessage((m) => m || detail.message!);
     }
     const fromUrl = new URLSearchParams(window.location.search).get("enquiry");
-    if (isEnquiryType(fromUrl)) apply({ type: fromUrl });
+    if (offered(fromUrl)) apply({ type: fromUrl });
 
     const onPrefill = (e: Event) => apply((e as CustomEvent<PrefillDetail>).detail ?? {});
     window.addEventListener(PREFILL_EVENT, onPrefill);
     return () => window.removeEventListener(PREFILL_EVENT, onPrefill);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- options are static per page
   }, []);
 
   useEffect(() => {
@@ -75,7 +88,7 @@ export function ContactForm({ defaultType = "general" }: { defaultType?: Enquiry
     e.preventDefault();
     if (status === "submitting") return;
 
-    const values = { name, email, type, message, consent };
+    const values = { name, email, company, type, message, consent };
     const errs = validateEnquiry(values);
     setErrors(errs);
     setFormError(null);
@@ -86,10 +99,12 @@ export function ContactForm({ defaultType = "general" }: { defaultType?: Enquiry
 
     setStatus("submitting");
     try {
-      const result = await submitEnquiry({ ...values, website, turnstileToken: turnstile.current?.getToken() });
+      const result = await submitEnquiry({ ...values, source, website, turnstileToken: turnstile.current?.getToken() });
       if (result.ok) {
+        trackEvent("Enquiry", { type, source });
         setName("");
         setEmail("");
+        setCompany("");
         setType(defaultType);
         setMessage("");
         setConsent(false);
@@ -132,7 +147,7 @@ export function ContactForm({ defaultType = "general" }: { defaultType?: Enquiry
           />
           <Input
             id={FIELD_IDS.email}
-            label="Email"
+            label="Business email"
             name="email"
             type="email"
             autoComplete="email"
@@ -148,15 +163,30 @@ export function ContactForm({ defaultType = "general" }: { defaultType?: Enquiry
           />
         </div>
 
+        <Input
+          id={FIELD_IDS.company}
+          label="Company (optional)"
+          name="company"
+          autoComplete="organization"
+          placeholder="Morrow Holdings Ltd"
+          value={company}
+          error={errors.company}
+          maxLength={200}
+          onChange={(e) => {
+            setCompany(e.target.value);
+            clearError("company");
+          }}
+        />
+
         <Select
           id={FIELD_IDS.type}
           label="Enquiry type"
           name="type"
-          options={ENQUIRY_TYPES}
+          options={options}
           value={type}
           error={errors.type}
           onChange={(e) => {
-            if (isEnquiryType(e.target.value)) setType(e.target.value);
+            if (offered(e.target.value)) setType(e.target.value);
             clearError("type");
           }}
         />

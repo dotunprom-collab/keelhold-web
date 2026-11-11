@@ -17,7 +17,7 @@ export function BusinessStrip() {
               <span className={styles.name}>
                 {b.index} — {b.name}
               </span>
-              <span className={styles.status}>{b.operating ? "Operating" : "Planned"}</span>
+              <span className={styles.status}>{b.operating ? "Operating" : "Developing"}</span>
             </span>
           </a>
         ))}

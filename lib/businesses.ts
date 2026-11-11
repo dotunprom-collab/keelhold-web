@@ -28,22 +28,22 @@ export const BUSINESSES: readonly Business[] = [
     status: "Initial operating business",
     description:
       "Strategic, financial and transaction advisory for business owners, investors and management teams.",
-    legalEntity: "[legal entity name for Keelhold Advisory]",
+    legalEntity: "[legal entity name]",
     enquiryType: "advisory",
   },
   {
-    id: "technology",
-    slug: "technology",
+    id: "software",
+    slug: "software",
     index: "02",
-    name: "Technology",
+    name: "Software",
     category: "Technology",
     operating: true,
     status: "Initial operating business",
     description:
       "Independent financial technology and software development serving the investment industry, including fundCorridor.",
     product: "fundCorridor",
-    legalEntity: "[legal entity name for Keelhold Technology]",
-    enquiryType: "technology",
+    legalEntity: "[legal entity name for Keelhold Software]",
+    enquiryType: "software",
   },
   {
     id: "proprietary",

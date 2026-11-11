@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Lockup } from "@/components/brand/Lockup";
+import { Icon } from "@/components/core/Icon";
 import { BUSINESSES, FUNDCORRIDOR_URL } from "@/lib/businesses";
 import { CONTACT_EMAIL } from "@/lib/enquiry";
 import { REGISTERED_OFFICE } from "@/lib/site";
@@ -29,8 +30,10 @@ export function Footer() {
               ))}
               <li className={styles.muted}>
                 {FUNDCORRIDOR_URL ? (
-                  <a href={FUNDCORRIDOR_URL} target="_blank" rel="noopener noreferrer">
+                  <a href={FUNDCORRIDOR_URL} target="_blank" rel="noopener noreferrer" className={styles.external}>
                     fundCorridor
+                    <Icon name="arrow-up-right" size={14} />
+                    <span className="visually-hidden"> (opens in a new tab)</span>
                   </a>
                 ) : (
                   "fundCorridor"

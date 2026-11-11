@@ -1,9 +1,15 @@
-import { CONTACT_EMAIL, type EnquiryType } from "@/lib/enquiry";
+import { CONTACT_EMAIL, type EnquiryOption, type EnquirySource, type EnquiryType } from "@/lib/enquiry";
 import { REGISTERED_OFFICE } from "@/lib/site";
 import { ContactForm } from "./ContactForm";
 import styles from "./ContactSection.module.css";
 
-export function ContactSection({ defaultType }: { defaultType?: EnquiryType }) {
+interface ContactSectionProps {
+  defaultType?: EnquiryType;
+  options?: EnquiryOption[];
+  source?: EnquirySource;
+}
+
+export function ContactSection({ defaultType, options, source }: ContactSectionProps) {
   return (
     <section id="contact" className={styles.section} aria-labelledby="contact-heading">
       <div className={`container ${styles.grid}`}>
@@ -24,7 +30,7 @@ export function ContactSection({ defaultType }: { defaultType?: EnquiryType }) {
             </address>
           </div>
         </div>
-        <ContactForm defaultType={defaultType} />
+        <ContactForm defaultType={defaultType} options={options} source={source} />
       </div>
     </section>
   );

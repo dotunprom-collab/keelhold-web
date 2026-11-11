@@ -3,6 +3,7 @@ import { isEnquiryType, MESSAGE_MAX, type EnquiryType } from "./enquiry";
 export interface EnquiryInput {
   name: string;
   email: string;
+  company: string;
   type: EnquiryType;
   message: string;
   consent: boolean;
@@ -12,7 +13,7 @@ export type EnquiryField = keyof EnquiryInput;
 export type FieldErrors = Partial<Record<EnquiryField, string>>;
 
 /** Field order — used to focus the first invalid field. */
-export const FIELD_ORDER: EnquiryField[] = ["name", "email", "type", "message", "consent"];
+export const FIELD_ORDER: EnquiryField[] = ["name", "email", "company", "type", "message", "consent"];
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -21,6 +22,7 @@ export function validateEnquiry(input: Partial<Record<EnquiryField, unknown>>): 
   const errors: FieldErrors = {};
   const name = typeof input.name === "string" ? input.name.trim() : "";
   const email = typeof input.email === "string" ? input.email.trim() : "";
+  const company = typeof input.company === "string" ? input.company.trim() : "";
   const message = typeof input.message === "string" ? input.message.trim() : "";
 
   if (!name) errors.name = "Please enter your full name.";
@@ -28,6 +30,8 @@ export function validateEnquiry(input: Partial<Record<EnquiryField, unknown>>): 
 
   if (!email) errors.email = "Please enter your email address.";
   else if (email.length > 254 || !EMAIL_RE.test(email)) errors.email = "Please enter a valid email address.";
+
+  if (company.length > 200) errors.company = "Please shorten the company name.";
 
   if (!isEnquiryType(input.type)) errors.type = "Please choose an enquiry type.";
 

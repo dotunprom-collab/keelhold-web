@@ -5,13 +5,9 @@ import { BigMark } from "@/components/brand/BigMark";
 import { Status } from "@/components/brand/Status";
 import { ButtonLink } from "@/components/core/Button";
 import { Icon } from "@/components/core/Icon";
-import { BUSINESSES, getBusiness, type Business } from "@/lib/businesses";
+import { BUSINESSES, getBusiness } from "@/lib/businesses";
 import { useCompanySelection } from "./CompanySelection";
 import styles from "./CompaniesSelector.module.css";
-
-/** The selector shows the technology business as "Software"; elsewhere it is "Technology". */
-const SELECTOR_NAMES: Partial<Record<Business["id"], string>> = { technology: "Software" };
-const selectorName = (b: Business) => SELECTOR_NAMES[b.id] ?? b.name;
 
 export function CompaniesSelector() {
   const { selected, select } = useCompanySelection();
@@ -60,8 +56,8 @@ export function CompaniesSelector() {
             >
               <span className={styles.num}>{b.index}</span>
               <span className={styles.label}>
-                <span className={styles.name}>{selectorName(b)}</span>
-                <span className={styles.status}>{b.operating ? "Operating" : "Planned"}</span>
+                <span className={styles.name}>{b.name}</span>
+                <span className={styles.status}>{b.operating ? "Operating" : "Developing"}</span>
               </span>
               <Icon name="arrow-right" size={20} color="#C9A464" className={styles.arrow} />
             </button>
@@ -73,7 +69,7 @@ export function CompaniesSelector() {
         <BigMark entity={business.id} size={200} />
         <div className={styles.content}>
           <p className={`eyebrow ${styles.category}`}>{business.category}</p>
-          <h3 className={styles.title}>Keelhold {selectorName(business)}</h3>
+          <h3 className={styles.title}>Keelhold {business.name}</h3>
           <p className={styles.description}>{business.description}</p>
           {business.product && (
             <p className={styles.product}>
@@ -83,7 +79,7 @@ export function CompaniesSelector() {
           <Status operating={business.operating} label={business.status} tone="dark" />
           <div className={styles.cta}>
             <ButtonLink href={`/${business.slug}`} variant="accent" icon="arrow-right">
-              Explore {selectorName(business)}
+              Explore {business.name}
             </ButtonLink>
           </div>
         </div>

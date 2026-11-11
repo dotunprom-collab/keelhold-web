@@ -4,7 +4,7 @@ import styles from "./Fields.module.css";
 
 interface FieldShellProps {
   id: string;
-  label: string;
+  label: ReactNode;
   error?: string;
   hint?: string;
   children: ReactNode;
@@ -31,7 +31,7 @@ function describedBy(id: string, error?: string, hint?: string) {
   return error || hint ? `${id}-hint` : undefined;
 }
 
-type InputProps = { id: string; label: string; error?: string; hint?: string } & InputHTMLAttributes<HTMLInputElement>;
+type InputProps = { id: string; label: ReactNode; error?: string; hint?: string } & InputHTMLAttributes<HTMLInputElement>;
 
 export function Input({ id, label, error, hint, className, ...rest }: InputProps) {
   return (
@@ -47,7 +47,7 @@ export function Input({ id, label, error, hint, className, ...rest }: InputProps
   );
 }
 
-type TextareaProps = { id: string; label: string; error?: string; hint?: string } & TextareaHTMLAttributes<HTMLTextAreaElement>;
+type TextareaProps = { id: string; label: ReactNode; error?: string; hint?: string } & TextareaHTMLAttributes<HTMLTextAreaElement>;
 
 export function Textarea({ id, label, error, hint, className, ...rest }: TextareaProps) {
   return (
@@ -65,7 +65,7 @@ export function Textarea({ id, label, error, hint, className, ...rest }: Textare
 
 type SelectProps = {
   id: string;
-  label: string;
+  label: ReactNode;
   error?: string;
   hint?: string;
   options: readonly { value: string; label: string }[];

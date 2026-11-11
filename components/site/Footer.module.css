@@ -56,6 +56,17 @@
   color: var(--navy-300);
 }
 
+/* Long links (the email address) may wrap rather than push the page wider in narrow columns. */
+.list a {
+  overflow-wrap: anywhere;
+}
+
+.external {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
 .linkButton {
   padding: 0;
   background: none;

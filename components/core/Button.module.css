@@ -96,3 +96,15 @@
 .inverse:not(:disabled):hover {
   background: var(--paper-200);
 }
+
+/* Outlined button for navy grounds. */
+.outlineInverse {
+  background: transparent;
+  color: var(--paper-50);
+  border-color: var(--navy-500);
+  transition: border-color var(--duration-1) var(--ease-standard);
+}
+
+.outlineInverse:not(:disabled):hover {
+  border-color: var(--brass-500);
+}

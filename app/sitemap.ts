@@ -3,7 +3,7 @@ import { BUSINESSES } from "@/lib/businesses";
 import { SITE_URL } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const paths = ["", ...BUSINESSES.map((b) => `/${b.slug}`), "/privacy", "/terms"];
+  const paths = ["", ...BUSINESSES.map((b) => `/${b.slug}`), "/contact", "/privacy", "/terms"];
   return paths.map((path) => ({
     url: `${SITE_URL}${path}`,
     changeFrequency: "monthly",

@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { Icon } from "@/components/core/Icon";
 import { ButtonLink } from "@/components/core/Button";
-import { CONTACT_HREF, NAV_LINKS } from "./nav";
+import { CONTACT_HREF, NAV_LINKS, isCurrent } from "./nav";
 import styles from "./MobileMenu.module.css";
 
 export function MobileMenu() {
@@ -56,7 +56,13 @@ export function MobileMenu() {
       <div id="mobile-menu" ref={panel} className={styles.panel} hidden={!open}>
         <nav aria-label="Mobile" className={`container ${styles.nav}`}>
           {NAV_LINKS.map((l) => (
-            <Link key={l.href} href={l.href} className={styles.link} onClick={() => setOpen(false)}>
+            <Link
+              key={l.href}
+              href={l.href}
+              className={styles.link}
+              aria-current={isCurrent(l.href, pathname) ? "page" : undefined}
+              onClick={() => setOpen(false)}
+            >
               {l.label}
             </Link>
           ))}

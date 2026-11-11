@@ -14,8 +14,9 @@ import styles from "./business.module.css";
 
 export const dynamicParams = false;
 
+// Advisory has its own route (app/advisory); the rest share this template.
 export function generateStaticParams() {
-  return BUSINESSES.map((b) => ({ business: b.slug }));
+  return BUSINESSES.filter((b) => b.id !== "advisory").map((b) => ({ business: b.slug }));
 }
 
 export async function generateMetadata({ params }: PageProps<"/[business]">): Promise<Metadata> {
@@ -32,7 +33,7 @@ export async function generateMetadata({ params }: PageProps<"/[business]">): Pr
 
 export default async function BusinessPage({ params }: PageProps<"/[business]">) {
   const business = getBusinessBySlug((await params).business);
-  if (!business) notFound();
+  if (!business || business.id === "advisory") notFound();
   const next = getNextBusiness(business);
 
   return (
@@ -79,7 +80,7 @@ export default async function BusinessPage({ params }: PageProps<"/[business]">)
                 <>
                   <p className={`eyebrow ${styles.brass}`}>Featured product</p>
                   <p className={styles.product}>{business.product}</p>
-                  <p className={styles.stone}>A Keelhold Technology product.</p>
+                  <p className={styles.stone}>A Keelhold Software product.</p>
                   <div>
                     {FUNDCORRIDOR_URL ? (
                       <ButtonLink

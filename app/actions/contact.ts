@@ -1,7 +1,7 @@
 "use server";
 
 import { headers } from "next/headers";
-import { isEnquiryType } from "@/lib/enquiry";
+import { ENQUIRY_SOURCES, isEnquiryType, type EnquirySource } from "@/lib/enquiry";
 import { composeEnquiryMail, recipientFor, sendMail } from "@/lib/server/mail";
 import { rateLimit } from "@/lib/server/rate-limit";
 import { verifyTurnstile } from "@/lib/server/turnstile";
@@ -10,7 +10,9 @@ import { validateEnquiry, type FieldErrors } from "@/lib/validation";
 export interface EnquiryPayload {
   name: string;
   email: string;
+  company: string;
   type: string;
+  source: string;
   message: string;
   consent: boolean;
   /** Honeypot — must be empty. */
@@ -33,7 +35,10 @@ export async function submitEnquiry(payload: EnquiryPayload): Promise<EnquiryRes
   if (!rateLimit(ip ?? "unknown")) return { ok: false, error: "rate-limited" };
   if (!(await verifyTurnstile(payload.turnstileToken, ip))) return { ok: false, error: "failed" };
 
-  const to = recipientFor(payload.type);
+  const source: EnquirySource = ENQUIRY_SOURCES.includes(payload.source as EnquirySource)
+    ? (payload.source as EnquirySource)
+    : "group";
+  const to = recipientFor(payload.type, source);
   if (!to && process.env.NODE_ENV === "production") {
     console.error("[contact] No recipient configured for", payload.type);
     return { ok: false, error: "failed" };
@@ -45,10 +50,12 @@ export async function submitEnquiry(payload: EnquiryPayload): Promise<EnquiryRes
         {
           name: payload.name.trim(),
           email: payload.email.trim(),
+          company: typeof payload.company === "string" ? payload.company.trim() : "",
           type: payload.type,
           message: payload.message.trim(),
           consent: true,
         },
+        source,
         to ?? "dev@localhost",
       ),
     );

@@ -42,6 +42,17 @@
   color: var(--brass-500);
 }
 
+.link[aria-current="page"] {
+  text-decoration: underline;
+  text-decoration-color: var(--brass-500);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+}
+
+.contact[aria-current="page"] {
+  box-shadow: 0 0 0 2px var(--brass-500);
+}
+
 @media (max-width: 720px) {
   .nav {
     display: none;
